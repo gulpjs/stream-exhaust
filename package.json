@@ -2,21 +2,25 @@
   "name": "stream-exhaust",
   "version": "1.0.2",
   "description": "Ensure that a stream is flowing data without mutating it",
-  "main": "index.js",
+  "license": "MIT",
+  "main": "./index.js",
   "scripts": {
+    "format-check": "prettier . --check",
+    "format-write": "prettier . --write",
     "test": "node test.js"
   },
+  "funding": "https://github.com/sponsors/gulpjs",
   "repository": {
     "type": "git",
-    "url": "https://github.com/chrisdickinson/stream-exhaust.git"
+    "url": "git+https://github.com/chrisdickinson/stream-exhaust.git"
   },
   "author": "Chris Dickinson <chris@neversaw.us>",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/chrisdickinson/stream-exhaust.git"
   },
   "homepage": "https://github.com/chrisdickinson/stream-exhaust.git",
   "devDependencies": {
+    "prettier": "3.9.6",
     "readable-stream": "^1.0.31",
     "tape": "^2.14.0",
     "through2": "^0.5.1"
