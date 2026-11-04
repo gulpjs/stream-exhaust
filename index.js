@@ -1,5 +1,5 @@
-var Writable = require('stream').Writable;
-var inherits = require('util').inherits;
+var Writable = require("stream").Writable;
+var inherits = require("util").inherits;
 
 module.exports = resumer;
 
@@ -9,11 +9,11 @@ function resumer(stream) {
   }
 
   if (stream._read) {
-    stream.pipe(new Sink);
+    stream.pipe(new Sink());
     return stream;
   }
 
-  if (typeof stream.resume === 'function') {
+  if (typeof stream.resume === "function") {
     stream.resume();
     return stream;
   }
@@ -23,12 +23,12 @@ function resumer(stream) {
 
 function Sink() {
   Writable.call(this, {
-    objectMode: true
+    objectMode: true,
   });
 }
 
 inherits(Sink, Writable);
 
-Sink.prototype._write = function(chunk, encoding, cb) {
+Sink.prototype._write = function (chunk, encoding, cb) {
   setImmediate(cb);
 };

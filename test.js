@@ -1,16 +1,16 @@
-var test = require('tape');
-var exhaust = require('./index.js');
-var Stream = require('stream');
+var test = require("tape");
+var exhaust = require("./index.js");
+var Stream = require("stream");
 var Readable = Stream.Readable;
 var Writable = Stream.Writable;
-var through = require('through2');
-var S2Readable = require('readable-stream').Readable;
+var through = require("through2");
+var S2Readable = require("readable-stream").Readable;
 
-test('it should cause a Readable stream to complete if it\'s not piped anywhere', function(assert) {
-  var rs = new Readable({highWaterMark: 2});
+test("it should cause a Readable stream to complete if it's not piped anywhere", function (assert) {
+  var rs = new Readable({ highWaterMark: 2 });
   var a = 0;
   var ended = false;
-  rs._read = function() {
+  rs._read = function () {
     if (a++ < 100) {
       rs.push(a + "");
     } else {
@@ -19,20 +19,20 @@ test('it should cause a Readable stream to complete if it\'s not piped anywhere'
     }
   };
 
-  rs.on("end", function() {
-    assert.ok(a > 99, 'a should be > 99');
-    assert.ok(ended, 'it should end');
+  rs.on("end", function () {
+    assert.ok(a > 99, "a should be > 99");
+    assert.ok(ended, "it should end");
     assert.end();
   });
 
   exhaust(rs);
 });
 
-test('should work with Readable streams in objectMode', function(assert) {
-  var rs = new Readable({highWaterMark: 2, objectMode: true});
+test("should work with Readable streams in objectMode", function (assert) {
+  var rs = new Readable({ highWaterMark: 2, objectMode: true });
   var a = 0;
   var ended = false;
-  rs._read = function() {
+  rs._read = function () {
     if (a++ < 100) {
       rs.push(a);
     } else {
@@ -41,20 +41,20 @@ test('should work with Readable streams in objectMode', function(assert) {
     }
   };
 
-  rs.on("end", function() {
-    assert.ok(a > 99, 'a > 99');
-    assert.ok(ended, 'ended is true');
+  rs.on("end", function () {
+    assert.ok(a > 99, "a > 99");
+    assert.ok(ended, "ended is true");
     assert.end();
   });
 
   exhaust(rs);
 });
 
-test('should not interfere with a Readable stream that is piped somewhere', function(assert) {
-  var rs = new Readable({highWaterMark: 2});
+test("should not interfere with a Readable stream that is piped somewhere", function (assert) {
+  var rs = new Readable({ highWaterMark: 2 });
   var a = 0;
   var ended = false;
-  rs._read = function() {
+  rs._read = function () {
     if (a++ < 100) {
       rs.push(".");
     } else {
@@ -64,16 +64,16 @@ test('should not interfere with a Readable stream that is piped somewhere', func
   };
 
   var sizeRead = 0;
-  var ws = new Writable({highWaterMark: 2});
-  ws._write = function(chunk, enc, next) {
+  var ws = new Writable({ highWaterMark: 2 });
+  ws._write = function (chunk, enc, next) {
     sizeRead += chunk.length;
     next();
-  }
+  };
 
-  ws.on("finish", function() {
-    assert.ok(a > 99, 'a > 99');
-    assert.ok(ended, 'ended is true');
-    assert.equal(sizeRead, 100, 'sizeRead === 100');
+  ws.on("finish", function () {
+    assert.ok(a > 99, "a > 99");
+    assert.ok(ended, "ended is true");
+    assert.equal(sizeRead, 100, "sizeRead === 100");
     assert.end();
   });
 
@@ -82,11 +82,11 @@ test('should not interfere with a Readable stream that is piped somewhere', func
   exhaust(rs);
 });
 
-test('should not interfere with a Writable stream', function(assert) {
-  var rs = new Readable({highWaterMark: 2});
+test("should not interfere with a Writable stream", function (assert) {
+  var rs = new Readable({ highWaterMark: 2 });
   var a = 0;
   var ended = false;
-  rs._read = function() {
+  rs._read = function () {
     if (a++ < 100) {
       rs.push(".");
     } else {
@@ -96,16 +96,16 @@ test('should not interfere with a Writable stream', function(assert) {
   };
 
   var sizeRead = 0;
-  var ws = new Writable({highWaterMark: 2});
-  ws._write = function(chunk, enc, next) {
+  var ws = new Writable({ highWaterMark: 2 });
+  ws._write = function (chunk, enc, next) {
     sizeRead += chunk.length;
     next();
-  }
+  };
 
-  ws.on("finish", function() {
-    assert.ok(a > 99, 'a > 99');
-    assert.ok(ended, 'ended is true');
-    assert.equal(sizeRead, 100, 'sizeRead === 100');
+  ws.on("finish", function () {
+    assert.ok(a > 99, "a > 99");
+    assert.ok(ended, "ended is true");
+    assert.equal(sizeRead, 100, "sizeRead === 100");
     assert.end();
   });
 
@@ -114,11 +114,11 @@ test('should not interfere with a Writable stream', function(assert) {
   exhaust(ws);
 });
 
-test('should handle a Transform stream', function(assert) {
-  var rs = new Readable({highWaterMark: 2});
+test("should handle a Transform stream", function (assert) {
+  var rs = new Readable({ highWaterMark: 2 });
   var a = 0;
   var ended = false;
-  rs._read = function() {
+  rs._read = function () {
     if (a++ < 100) {
       rs.push(".");
     } else {
@@ -129,20 +129,24 @@ test('should handle a Transform stream', function(assert) {
 
   var sizeRead = 0;
   var flushed = false;
-  var ts = through({highWaterMark: 2}, function(chunk, enc, cb) {
-    sizeRead += chunk.length;
-    this.push(chunk);
-    cb();
-  }, function(cb) {
-    flushed = true;
-    cb();
-  });
+  var ts = through(
+    { highWaterMark: 2 },
+    function (chunk, enc, cb) {
+      sizeRead += chunk.length;
+      this.push(chunk);
+      cb();
+    },
+    function (cb) {
+      flushed = true;
+      cb();
+    },
+  );
 
-  ts.on("end", function() {
-    assert.ok(a > 99, 'a > 99');
-    assert.ok(ended, 'ended is true');
-    assert.equal(sizeRead, 100, 'sizeRead === 100');
-    assert.ok(flushed, 'flushed is true');
+  ts.on("end", function () {
+    assert.ok(a > 99, "a > 99");
+    assert.ok(ended, "ended is true");
+    assert.equal(sizeRead, 100, "sizeRead === 100");
+    assert.ok(flushed, "flushed is true");
     assert.end();
   });
 
@@ -151,13 +155,13 @@ test('should handle a Transform stream', function(assert) {
   exhaust(ts);
 });
 
-test('should handle a classic stream', function(assert) {
+test("should handle a classic stream", function (assert) {
   var rs = new Stream();
   var ended = false;
   var i;
 
-  rs.on("end", function() {
-    assert.ok(ended, 'ended is true');
+  rs.on("end", function () {
+    assert.ok(ended, "ended is true");
     assert.end();
   });
 
@@ -170,13 +174,13 @@ test('should handle a classic stream', function(assert) {
   rs.emit("end");
 });
 
-test('should not modify .pipe', function(assert) {
-  var stream = new S2Readable;
+test("should not modify .pipe", function (assert) {
+  var stream = new S2Readable();
 
   var pipe = stream.pipe;
 
-  stream._read = function() {
-    stream.push('ending');
+  stream._read = function () {
+    stream.push("ending");
     stream.push(null);
   };
 
@@ -186,15 +190,15 @@ test('should not modify .pipe', function(assert) {
   assert.end();
 });
 
-test('does not error on no resume but readable set to true', function(assert) {
+test("does not error on no resume but readable set to true", function (assert) {
   var rs = new Stream();
   rs.readable = true;
 
   var ended = false;
   var i;
 
-  rs.on("end", function() {
-    assert.ok(ended, 'ended is true');
+  rs.on("end", function () {
+    assert.ok(ended, "ended is true");
     assert.end();
   });
 

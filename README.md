@@ -5,6 +5,7 @@
 </p>
 
 # stream-exhaust
+
 [![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Build Status][ci-image]][ci-url] [![Coveralls Status][coveralls-image]][coveralls-url]
 
 ## What is it?
@@ -13,10 +14,11 @@ Ensure that the provided stream is flowing data, even if the stream hasn't been
 piped to another stream.
 
 ```javascript
-var exhaustively = require('stream-exhaust');
+var exhaustively = require("stream-exhaust");
 
-exhaustively(fs.createReadStream(__filename))
-  .on('close', () => { console.log('all done, despite being streams{1+N}!') });
+exhaustively(fs.createReadStream(__filename)).on("close", () => {
+  console.log("all done, despite being streams{1+N}!");
+});
 ```
 
 ## Prior Art
@@ -26,7 +28,7 @@ by [aroneous](https://github.com/aroneous). It is a separate package because it 
 different semantics:
 
 1. It does not call `.resume()` on streams2+ streams. streams2 streams monkeypatch `.pipe`
-when entering flowing mode; avoiding `resume()` avoids that fate.
+   when entering flowing mode; avoiding `resume()` avoids that fate.
 2. It does not examine `._readableState`; instead it checks for the presence of `._read`.
 
 ## API
