@@ -1,25 +1,35 @@
 {
   "name": "stream-exhaust",
   "version": "1.0.2",
+  "author": "Gulp Team <team@gulpjs.com> (https://gulpjs.com/)",
   "description": "Ensure that a stream is flowing data without mutating it",
-  "license": "MIT",
-  "main": "./index.js",
-  "scripts": {
-    "format-check": "prettier . --check",
-    "format-write": "prettier . --write",
-    "test": "node test.js"
-  },
+  "contributors": [
+    "Chris Dickinson <chris@neversaw.us>",
+    "Blaine Bublitz <blaine.bublitz@gmail.com>"
+  ],
   "funding": "https://github.com/sponsors/gulpjs",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chrisdickinson/stream-exhaust.git"
+    "url": "git+https://github.com/gulpjs/stream-exhaust.git"
   },
-  "author": "Chris Dickinson <chris@neversaw.us>",
-  "bugs": {
-    "url": "https://github.com/chrisdickinson/stream-exhaust.git"
+  "license": "MIT",
+  "engines": {
+    "node": ">= 22.15.0"
   },
-  "homepage": "https://github.com/chrisdickinson/stream-exhaust.git",
+  "main": "./index.js",
+  "files": [
+    "LICENSE",
+    "index.js"
+  ],
+  "scripts": {
+    "format-check": "prettier . --check",
+    "format-write": "prettier . --write",
+    "lint": "eslint .",
+    "test": "node test.js"
+  },
   "devDependencies": {
+    "eslint": "10.11.0",
+    "eslint-config-gulp": "7.0.0",
     "prettier": "3.9.6",
     "readable-stream": "^1.0.31",
     "tape": "^2.14.0",

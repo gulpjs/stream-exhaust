@@ -3,7 +3,6 @@ var exhaust = require('./index.js');
 var Stream = require('stream');
 var Readable = Stream.Readable;
 var Writable = Stream.Writable;
-var Duplex = Stream.Duplex;
 var through = require('through2');
 var S2Readable = require('readable-stream').Readable;
 
