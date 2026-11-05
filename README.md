@@ -8,7 +8,7 @@
 
 [![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Build Status][ci-image]][ci-url] [![Coveralls Status][coveralls-image]][coveralls-url]
 
-## What is it?
+## Usage
 
 Ensure that the provided stream is flowing data, even if the stream hasn't been
 piped to another stream.
