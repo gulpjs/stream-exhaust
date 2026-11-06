@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="http://gulpjs.com">
+  <a href="https://gulpjs.com">
     <img height="257" width="114" src="https://raw.githubusercontent.com/gulpjs/artwork/master/gulp-2x.png">
   </a>
 </p>
@@ -23,12 +23,11 @@ exhaustively(fs.createReadStream(__filename)).on("close", () => {
 
 ## Prior Art
 
-This is based on [stream-consume](https://github.com/aroneous/stream-consume)
-by [aroneous](https://github.com/aroneous). It is a separate package because it has
+This is based on [stream-consume][stream-consume] by [aroneous][aroneous]. It is a separate package because it has
 different semantics:
 
-1. It does not call `.resume()` on streams2+ streams. streams2 streams monkeypatch `.pipe`
-when entering flowing mode; avoiding `resume()` avoids that fate.
+1. It does not call `.resume()` on streams2+ streams. streams2 streams monkeypatch 
+  `.pipe` when entering flowing mode; avoiding `resume()` avoids that fate.
 2. It does not examine `._readableState`; instead it checks for the presence of `._read`.
 
 ## API
@@ -63,4 +62,9 @@ MIT
 
 [coveralls-url]: https://coveralls.io/r/gulpjs/stream-exhaust
 [coveralls-image]: https://img.shields.io/coveralls/gulpjs/stream-exhaust/master.svg?style=flat-square
+<!-- prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+[stream-consume]: https://github.com/aroneous/stream-consume
+[aroneous]: https://github.com/aroneous
 <!-- prettier-ignore-end -->
