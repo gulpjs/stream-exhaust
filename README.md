@@ -28,7 +28,7 @@ by [aroneous](https://github.com/aroneous). It is a separate package because it 
 different semantics:
 
 1. It does not call `.resume()` on streams2+ streams. streams2 streams monkeypatch `.pipe`
-   when entering flowing mode; avoiding `resume()` avoids that fate.
+when entering flowing mode; avoiding `resume()` avoids that fate.
 2. It does not examine `._readableState`; instead it checks for the presence of `._read`.
 
 ## API
