@@ -1,6 +1,6 @@
 {
   "name": "stream-exhaust",
-  "version": "1.0.2",
+  "version": "1.0.0",
   "author": "Gulp Team <team@gulpjs.com> (https://gulpjs.com/)",
   "description": "Ensure that a stream is flowing data without mutating it",
   "contributors": [
