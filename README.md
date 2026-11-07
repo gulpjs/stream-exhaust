@@ -26,8 +26,7 @@ exhaustively(fs.createReadStream(__filename)).on("close", () => {
 This is based on [stream-consume][stream-consume] by [aroneous][aroneous]. It is a separate package because it has
 different semantics:
 
-1. It does not call `.resume()` on streams2+ streams. streams2 streams monkeypatch 
-  `.pipe` when entering flowing mode; avoiding `resume()` avoids that fate.
+1. It does not call `.resume()` on streams2+ streams. streams2 streams monkeypatch `.pipe` when entering flowing mode; avoiding `resume()` avoids that fate.
 2. It does not examine `._readableState`; instead it checks for the presence of `._read`.
 
 ## API
