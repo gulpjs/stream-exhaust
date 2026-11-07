@@ -56,11 +56,11 @@ MIT
 [npm-url]: https://www.npmjs.com/package/stream-exhaust
 [npm-image]: https://img.shields.io/npm/v/stream-exhaust.svg?style=flat-square
 
-[ci-url]: https://github.com/gulpjs/stream-exhaust/actions?query=workflow:dev
-[ci-image]: https://img.shields.io/github/workflow/status/gulpjs/stream-exhaust/dev?style=flat-square
+[ci-url]: https://github.com/gulpjs/stream-exhaust/actions/workflows/dev.yml
+[ci-image]: https://img.shields.io/github/actions/workflow/status/gulpjs/stream-exhaust/dev.yml?style=flat-square
 
 [coveralls-url]: https://coveralls.io/r/gulpjs/stream-exhaust
-[coveralls-image]: https://img.shields.io/coveralls/gulpjs/stream-exhaust/master.svg?style=flat-square
+[coveralls-image]: https://img.shields.io/coveralls/gulpjs/stream-exhaust/main.svg?style=flat-square
 <!-- prettier-ignore-end -->
 
 <!-- prettier-ignore-start -->
